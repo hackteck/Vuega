@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "build": {
+    "env": {
+      "IS_VERCEL": "true",
+      "CLIENT_OUTPUT_PATH": "public",
+      "SERVER_OUTPUT_PATH": "api/ssr"
+    }
+  },
+  "functions": {
+    "api/ssr/index.ts": {
+      "includeFiles": "api/ssr/**"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "(.*)",
+      "destination": "/api/ssr/"
+    }
+  ]
+}

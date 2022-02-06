@@ -1,0 +1,43 @@
+name: Vercel deploy
+
+on: push
+
+env:
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+jobs:
+  build:
+    if: secrets.VERCEL_TOKEN != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: echo "::set-output name=dir::$(npm config get cache)"
+      
+      - name: Restore npm cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+
+      -name: Install
+        run: npm run install
+
+      -name: Move server functions
+        run: mv ./src/plugins/vercel/api/ ./api/
+
+      -name: Project name
+        id: project_name
+        run: |
+          NAME=$(node -e "console.log(require('./package.json').name)") &&
+          echo "::set-output name=NAME::$NAME"
+
+      - name: Deploy
+        env:
+          PROJECT_NAME: ${{ steps.project_name.outputs.NAME }}
+        run: npx now --token=$VERCEL_TOKEN --local-config=src/plugins/vercel/now.json --name=$PROJECT_NAME --prod
