@@ -18,20 +18,20 @@ jobs:
       - name: Get npm cache directory
         id: npm-cache-dir
         run: echo "::set-output name=dir::$(npm config get cache)"
-      
+
       - name: Restore npm cache
         uses: actions/cache@v2
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
 
-      -name: Install
+      - name: Install
         run: npm run install
 
-      -name: Move server functions
+      - name: Move server functions
         run: mv ./src/plugins/vercel/api/ ./api/
 
-      -name: Project name
+      - name: Project name
         id: project_name
         run: |
           NAME=$(node -e "console.log(require('./package.json').name)") &&
