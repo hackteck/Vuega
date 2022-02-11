@@ -2,6 +2,8 @@
     "compilerOptions": {
         "baseUrl": ".",
         "strict": true,
+        "checkJs": true,
+        "outDir": "dist",
         "module": "CommonJS",
         "moduleResolution": "Node",
         "resolveJsonModule": true,
@@ -15,7 +17,8 @@
     },
     "include": [
         "@types/**/*",
-        "src/**/*"
+        "src/**/*",
+        "webpack/**/*",
     ],
     "exclude": [
         "node_modules"

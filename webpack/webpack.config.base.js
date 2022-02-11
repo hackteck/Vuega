@@ -1,5 +1,3 @@
-//@ts-check
-
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -7,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const mode = process.env.WEBPACK_SERVE ? "development" : "production";
 
+/**@type { (env: import("@/webpack").WebpackBuildEnv) => import("webpack").Configuration }*/
 module.exports = (env = {}) => {
     /**@type { import("webpack").Configuration } */
     const config = {

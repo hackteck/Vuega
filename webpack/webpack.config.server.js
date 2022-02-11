@@ -1,8 +1,7 @@
-//@ts-check
-
 const path = require("path");
 const createBaseConfig = require("./webpack.config.base.js");
 
+/**@type { (env: import("@/webpack").WebpackBuildEnv) => import("webpack").Configuration }*/
 module.exports = (env = {}) => {
   env.SSR = env.SSR || "true";
   const baseConfig = createBaseConfig(env);

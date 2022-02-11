@@ -1,9 +1,8 @@
-//@ts-check
-
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const createBaseConfig = require("./webpack.config.base.js");
 
+/**@type { (env?: import("@/webpack").WebpackBuildEnv) => import("webpack").Configuration }*/
 module.exports = (env = {}) => {
   const baseConfig = createBaseConfig(env);
 
@@ -16,6 +15,7 @@ module.exports = (env = {}) => {
     },
   }
 
+  baseConfig.plugins ??= [];
   baseConfig.plugins.push(new HtmlWebpackPlugin({
     inject: false,
     minify: false,

@@ -1,8 +1,7 @@
-//@ts-check
-
 const path = require("path");
 const createClientConfig = require("./webpack.config.client");
 
+/**@type { (env: import("@/webpack").WebpackBuildEnv) => import("webpack").Configuration }*/
 module.exports = (env = {}) => {
     const clientConfig = createClientConfig(env);
     return Object.assign(clientConfig, {
