@@ -3,7 +3,7 @@ import { useApp } from "@/main";
 const { renderToString } = require('@vue/server-renderer');
 
 export default async (context: AppContext = {}) => {
-    const { app, router } = useApp(true, {
+    const { app, router } = await useApp(true, {
         
     });
 

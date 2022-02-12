@@ -13,12 +13,14 @@
     "vercel-build": "node ./src/plugins/vercel/build.js"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "now": "^16.7.3",
     "vue": "^3.2.29",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@now/node": "^1.8.5",
+    "@types/lodash": "^4.14.178",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.5.1",
     "fork-ts-checker-webpack-plugin": "^6.5.0",

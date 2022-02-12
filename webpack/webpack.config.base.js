@@ -2,6 +2,7 @@ const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const i18nPlugin = require("../src/plugins/i18n/webpack.plugin.js");
 
 const mode = process.env.WEBPACK_SERVE ? "development" : "production";
 
@@ -55,7 +56,9 @@ module.exports = (env = {}) => {
                 {
                     test: /\.otf/,
                     type: 'asset/resource'
-                }
+                },
+                // Internationalization
+                i18nPlugin.rule
             ]
         },
         resolve: {
@@ -84,6 +87,7 @@ module.exports = (env = {}) => {
             new MiniCssExtractPlugin({
                 filename: "css/bundle.css"
             }),
+            new i18nPlugin
         ]
     }
 

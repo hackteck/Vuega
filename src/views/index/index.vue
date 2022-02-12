@@ -1,5 +1,5 @@
 <template>
-  <div>Hello {{ name }}!</div>
+  <div>Hello {{ $t.test }}!</div>
 </template>
 
 <script lang="ts">
@@ -27,3 +27,10 @@ export default defineComponent({
   },
 })
 </script>
+
+
+<i18n>
+{
+  "test": "World",
+}
+</i18n>
