@@ -15,7 +15,7 @@ module.exports = (env = {}) => {
     },
   }
 
-  baseConfig.plugins ??= [];
+  baseConfig.plugins = baseConfig.plugins || []; // Vercel not support ??= operator
   baseConfig.plugins.push(new HtmlWebpackPlugin({
     inject: false,
     minify: false,
