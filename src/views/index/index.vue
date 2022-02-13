@@ -1,5 +1,5 @@
 <template>
-  <div>Hello {{ $t.test }}!</div>
+  <div>Hello {{ $t.foo }} !</div>
 </template>
 
 <script lang="ts">
@@ -19,10 +19,7 @@ export default defineComponent({
       // no sleep for server
     }
     else {
-      await sleep(2000);
-    }
-    return {
-      name: "World"
+      await sleep(100);
     }
   },
 })
@@ -32,5 +29,8 @@ export default defineComponent({
 <i18n>
 {
   "test": "World",
+  "foo": {
+    "bar": "Мир"
+  }
 }
 </i18n>
