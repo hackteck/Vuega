@@ -11,7 +11,12 @@ module.exports = (env = {}) => {
     entry: path.resolve(__dirname, "../src/entry_client.ts"),
     output: {
       path: path.resolve(process.env.CLIENT_OUTPUT_PATH || env.CLIENT_OUTPUT_PATH || "dist"),
-      filename: 'js/bundle.js'
+      filename: 'js/[name].bundle.js'
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
     },
   }
 
