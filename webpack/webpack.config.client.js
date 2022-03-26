@@ -11,13 +11,27 @@ module.exports = (env = {}) => {
     entry: path.resolve(__dirname, "../src/entry_client.ts"),
     output: {
       path: path.resolve(process.env.CLIENT_OUTPUT_PATH || env.CLIENT_OUTPUT_PATH || "dist"),
-      filename: 'js/[name].bundle.js'
+      filename: 'js/[name].[contenthash:8].js',
     },
     optimization: {
       splitChunks: {
-        chunks: 'all',
-      },
-    },
+        cacheGroups: {
+          vendors: {
+            name: 'chunk-vendors',
+            test: /node_modules/,
+            priority: -10,
+            chunks: 'initial'
+          },
+          common: {
+            name: 'chunk-common',
+            minChunks: 2,
+            priority: -20,
+            chunks: 'initial',
+            reuseExistingChunk: true
+          }
+        }
+      }
+    }
   }
 
   baseConfig.plugins = baseConfig.plugins || []; // Vercel not support ??= operator
